@@ -1,7 +1,6 @@
 ## 02 URI와 웹 브라우저 요청 흐름 ##
 - [01 URI](#1)
 - [02 웹 브라우저 요청 흐름](#2)
-- [03 정리](#3)
 
 ---
 
@@ -37,33 +36,63 @@
 ### URL - scheme ####
 
     scheme://[userinfo@]host[:port][/path][?query][#fragment]
-    https://www.google.com/search?q=hello&oq=hello&hi=ko
-        주로 프로토콜 사용
-        - 프로토콜 : 어떤 방식으로 자원에 접근할 것인가. 약속 규칙
-            - http, https, ftp 등
-            - http 80 포트, https 443 포트 주로 사용. 포트는 생략 가능하다.
-            - https는 http에 강력한 보안 추가 (http Secure)
-            - https : http://wiki.hash.kr/index.php/HTTPS
-            - path = "search?" : 리소스의 경로, 계층적 구조 ex) members/100
-            - query = "?q=hello&oq=hello&hi=ko"
-                - key = value 형태
-                - ?로 시작, &로 추가 가능 -> ?keyA=valueA&keyB=valueB
-                - query parameter, query string 등으로 불림, 웹서버에 제공하는 파라미터, 문자 형태
-            - fragment
-                - https://www.django-rest-framework.org/api-guide/generic-views/#mixins
-                - #mixins
-                - HTML 내부 북마크 등에 사용됨
-                - 서버에 전송되는 내용 아님
+    https://www.google.com/search?q=hello&hi=ko
+
+- 주로 프로토콜 사용
+- 프로토콜 : 어떤 방식으로 자원에 접근할 것인가. 약속 규칙
+    - http, https, ftp 등
+    - http 80 포트, https 443 포트 주로 사용. 포트는 생략 가능하다.
+    - https는 http에 강력한 보안 추가 (http Secure)
+    - https : http://wiki.hash.kr/index.php/HTTPS
+    - path = "search?" : 리소스의 경로, 계층적 구조 ex) members/100
+    - query = "?q=hello&oq=hello&hi=ko"
+        - key = value 형태
+        - ?로 시작, &로 추가 가능 -> ?keyA=valueA&keyB=valueB
+        - query parameter, query string 등으로 불림, 웹서버에 제공하는 파라미터, 문자 형태
+    - fragment
+        - https://www.django-rest-framework.org/api-guide/generic-views/#mixins
+        - #mixins
+        - HTML 내부 북마크 등에 사용됨
+        - 서버에 전송되는 내용 아님
 
 
 
 <a name="2"></a>
 ## 02 웹 브라우저 요청 흐름 ##
 
+    https://www.google.com/search?q=hello&hi=ko
 
-<a name="3"></a>
-## 정리 ##
-- 
+- 검색창에 위와같이 입력하면
+    - IP 주소와 포트 번호를 찾아낸다
+        1) DNS 조회 -> IP: 200.200.200.2
+        2) HTTPS 포트 443
+    - 웹 브라우저가 **HTTP 요청 메시지 생성** (아래처럼 생성됨)
+    ```
+    GET /search?q=hello&hi=ko HTTP/1.1
+    HOST: www.google.com
+    (몇 가지 부가정보가 더 있지만.. 일단 간략하게!!)
+    ```
+    - 소켓 라이브러리를 통해 전달
+        1) TCP/IP 연결(IP,PORT)
+        2) 데이터 전달
+    - TCP/IP 패킷 생성, **HTTP 메시지 포함**
+    - 요청 패킷이 서버에 도착하면 TCP/IP 패킷을 까서? 버리고 **HTTP 메시지** 해석한다
+    - 서버는 해석한 내용을 가지고 데이터를 찾아 응답
+    - 서버에서 **HTTP 응답 메시지 생성** (아래처럼 생성됨)
+    ```
+    HTTP/1.1 200 OK
+    Content-Type: text/html;charset=UTF-8
+    Content-Length: 3423
+
+    <html>
+        <body>...<body>
+    </html>
+    ```
+    - 응답 : TCP/IP 패킷 생성, **HTTP 메시지 포함**
+    - 응답을 까서? 웹 브라우저 HTML 렌더링 -> 그러면 결과물을 우리가 보는 것이다!
+
 
 ---
 ### 관련 내용 참조 ###
+https://www.ietf.org/rfc/rfc3986.txt
+https://intrepidgeeks.com/tutorial/http-web-basics#15
