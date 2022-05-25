@@ -15,11 +15,13 @@
 - 회원 정보 PAI URI 설계
 - URI(Uniform Resource Identifier)
 
-    -회원 목록 조회 /read-member-list
-    -회원 조회 /read-member-by-id
-    -회원 등록 /create-member
-    -회원 수정 /update-member
-    -회원 삭제 /delete-member
+```
+    - 회원 목록 조회 /read-member-list
+    - 회원 조회 /read-member-by-id
+    - 회원 등록 /create-member
+    - 회원 수정 /update-member
+    - 회원 삭제 /delete-member
+```
 
 > 이것이 과연 좋은 URI 설계일까?
 
@@ -29,12 +31,14 @@
     - 회원을 [등록하고 수정하고 조회하는 하라!] 이게 리소스가 아니다.
     - [회원] 개념 자체가 리소스이다.
 
-    -회원 목록 조회 /members
-    -회원 조회 /members/{id}
-    -회원 등록 /members/{id}
-    -회원 수정 /members/{id}
-    -회원 삭제 /members/{id}
+```
+    - 회원 목록 조회 /members
+    - 회원 조회 /members/{id}
+    - 회원 등록 /members/{id}
+    - 회원 수정 /members/{id}
+    - 회원 삭제 /members/{id}
     [참고: 계층 구조상 상위를 컬렉션으로 보고 복수단어 사용 권장(member-> members)]
+```
 
 > 그럼 같은 URI를 가지고 있는 걸 어떻게 구분할 수 있을까?
 
