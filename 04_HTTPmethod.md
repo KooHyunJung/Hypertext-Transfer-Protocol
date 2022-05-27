@@ -113,7 +113,7 @@
 ## 03 HTTP method - PUT, PATCH, DELETE ##
 <details>
   <summary>
-    <b> PUT </b>
+    <h3> PUT </h3>
   </summary>
 
 - **리소스 대체** (컴퓨터 파일로 이해하면 쉽다)
@@ -128,22 +128,29 @@
 
 > 따라서 부분만 수정할 때는 PUT은 적합하지 않다. 수정 -> PATCH 사용
 
-### PATCH ###
+<details>
+  <summary>
+    <h3> PATCH </h3>
+  </summary>
 
 - 리소스 부분 변경
     - 필드 "이름", "나이" 부분 수정(update)하고 싶다면.
 - 지금은 [PATCH] 대부분 지원하지만 안 될 경우 POST를 사용하면 된다.
 
 <img width="1114" alt="스크린샷 2022-05-27 오후 7 06 07" src="https://user-images.githubusercontent.com/96563289/170679020-2e11ade9-7003-4bca-802c-7dfff1c69398.png">
+</details>
 
-### DELETE ###
+<details>
+  <summary>
+    <h3> DELETE </h3>
+  </summary>
 
 - 리소스 제거
 
 <img width="682" alt="스크린샷 2022-05-27 오후 7 10 27" src="https://user-images.githubusercontent.com/96563289/170679806-65d5efd0-6cef-473c-87c4-e3d8588b8f28.png">
 
 <img width="621" alt="스크린샷 2022-05-27 오후 7 10 41" src="https://user-images.githubusercontent.com/96563289/170679863-5314525a-cbf7-4569-bf9d-c1085f4cbbe5.png">
-
+</details>
 
 <a name="4"></a>
 ## 04 HTTP method 속성 ##
@@ -178,7 +185,8 @@
 
 ```
 <캐시>
-    데이터나 값을 미리 복사해 놓은 임시 장소를 가르킨다. 리소스 파일들의 임시 저장소. 같은 웹 페이지에 접속할 때 사용자의 PC에서 로드하므로 서버를 거치지 않아도 된다
+    데이터나 값을 미리 복사해 놓은 임시 장소를 가르킨다. 리소스 파일들의 임시 저장소. 
+    같은 웹 페이지에 접속할 때 사용자의 PC에서 로드하므로 서버를 거치지 않아도 된다
 ```
 
 - 응답 결과 리소스를 캐시해서 사용해도 되는가?
