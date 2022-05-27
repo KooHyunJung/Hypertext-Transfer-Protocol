@@ -111,24 +111,85 @@
 
 <a name="3"></a>
 ## 03 HTTP method - PUT, PATCH, DELETE ##
-### PUT ###
+<details>
+  <summary>
+    <b> PUT </b>
+  </summary>
 
 - **리소스 대체** (컴퓨터 파일로 이해하면 쉽다)
-    - 리소스가 있으면 대체
+    - 리소스가 있으면 완전히 대체(기존 내용/필드 삭제)
     - 리소스가 없으면 생성
     - 쉽게 이야기해서 덮어버림
 - **‼️ 클라이언트가 리서스 식별**
-    - 클라이언트가 리소스 위치를 알고 URI 지정
-        - 예) 
-        - POST와 차이점
+    - 클라이언트가 리소스 위치를 알고 URI 지정(리소스를 100에 지정할 것이다)
+        - 예) PUT members/100 HTTP/1.1
+        - 이 부분이 POST와의 차이점이다
+</details>
+
+> 따라서 부분만 수정할 때는 PUT은 적합하지 않다. 수정 -> PATCH 사용
+
+### PATCH ###
+
+- 리소스 부분 변경
+    - 필드 "이름", "나이" 부분 수정(update)하고 싶다면.
+- 지금은 [PATCH] 대부분 지원하지만 안 될 경우 POST를 사용하면 된다.
+
+<img width="1114" alt="스크린샷 2022-05-27 오후 7 06 07" src="https://user-images.githubusercontent.com/96563289/170679020-2e11ade9-7003-4bca-802c-7dfff1c69398.png">
+
+### DELETE ###
+
+- 리소스 제거
+
+<img width="682" alt="스크린샷 2022-05-27 오후 7 10 27" src="https://user-images.githubusercontent.com/96563289/170679806-65d5efd0-6cef-473c-87c4-e3d8588b8f28.png">
+
+<img width="621" alt="스크린샷 2022-05-27 오후 7 10 41" src="https://user-images.githubusercontent.com/96563289/170679863-5314525a-cbf7-4569-bf9d-c1085f4cbbe5.png">
 
 
 <a name="4"></a>
 ## 04 HTTP method 속성 ##
-### 내용 ###
 
+```
+- 안전(Safe Methods)
+- 멱등(Idempotent Methods)
+- 캐시가능(Cacheable Methods)
+```
+<img width="668" alt="스크린샷 2022-05-27 오후 7 20 17" src="https://user-images.githubusercontent.com/96563289/170681353-57277f63-db56-4395-80ab-8aaa776b5bfa.png">
+
+### 안전(Safe) ###
+- HTTP method에서 [안전]이란, 호출해도 리소스를 변경하지 않는다는 것이다.
+- 따라서 GET, HEAD 변경이 없어 안전하다
+    - Q : 그래도 계속 호출해서 로그 같은게 쌓여 장애가 발생하면?
+    - A : 안전은 해당 리소스만 고려한다. 그런 부분까지 고려하지 않음.
+
+### 멱등(Idempotent) ###
+- f(f(x)) = f(x)
+- 한 번 호출하든 두 번 호출하든 100번 호출하든 결과가 똑같아야 멱등한 메서드이다.
+- 멱등은 외부 요인으로 중간에 이소스가 변경되는 것 까지 고려하지 않는다 -> 이런 거는 서버에서 중간에 메서드가 바뀌었는지 확인해 줘야 한다.
+- 멱등 메서드 
+    - GET : 한 번 조회하든, 두 번 조회하든 같은 결과가 나온다
+    - PUT : 결과를 대체한다. 따라서 같은 요청을 여러번 해도 최종 결과는 같다.
+    - DELETE: 결과를 삭제한다. 같은 요청을 여러번 해도 삭제된 결과는 똑같다.
+    - POST : ```멱등 아님!``` 두 번 호출하면 같은 결제가 중복해서 발생할 수 있다.
+- 어디에 사용할까?
+    - 자동 복구 메커니즘
+    - 서버가 TIMEOUT 등으로 정상 응답을 못 주었을 때, 클라이언트가 같은 요청을 다시 해도 되는가? 판단 근거.
+
+### 캐시가능(Cacheable) ###
+
+```
+<캐시>
+    데이터나 값을 미리 복사해 놓은 임시 장소를 가르킨다. 리소스 파일들의 임시 저장소. 같은 웹 페이지에 접속할 때 사용자의 PC에서 로드하므로 서버를 거치지 않아도 된다
+```
+
+- 응답 결과 리소스를 캐시해서 사용해도 되는가?
+- GET, HEAD, POST, PATCH 캐시 가능
+- 실제로는 GET, HEAD 정도만 캐시로 가능(GET은 URL만 키로 잡고 캐시 가능. 실무에서는 거이 GET만 사용)
+    - 왜냐면 POST, PATCH 본문 내용까지 캐시 키로 고려하는데 구현이 쉽지 않다.
 
 
 ---
 ### 관련 내용 참조 ###
+- https://kotlinworld.com/114
+- https://intrepidgeeks.com/tutorial/http-five-main-methods-getpostputpatchdelete
+- https://developer.mozilla.org/ko/docs/Web/HTTP/Methods
 
