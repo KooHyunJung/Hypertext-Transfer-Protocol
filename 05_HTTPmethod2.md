@@ -154,3 +154,4 @@ PATCH, PUT 모두 사용 애매하다면 [POST]를 사용하면 된다.
 ---
 ### 관련 내용 참조 ###
 - https://www.inflearn.com/course/http-웹-네트워크/lecture/61369?volume=1.00&tab=note
+- https://restfulapi.net/resource-naming
