@@ -21,7 +21,7 @@
 ![스크린샷 2022-06-01 오후 2 25 35](https://user-images.githubusercontent.com/96563289/171333864-81847165-21a7-420e-bdf9-22872f503a16.png)
 
 - HTTP 헤더 필드 형태
-  - ```header-field = field-name : value```
+  - ```header-field = field-name : field-value```
 - HTTP 용도
   - **HTTP 전송에 필요한 모든 부가 정보**
     - 예) 메시지 바디의 내용, 메시지 바디의 크기, 압축, 인증, 요청 클라이언트, 서버 정보, 캐시 관리 정보...
@@ -77,7 +77,11 @@
 ---
 ### 관련 내용 참조 ###
 - https://www.jaeme.dev/web-http6/
-- 
+- https://wonit.tistory.com/308
+- https://rangken.github.io/blog/2015/http-headers/
+- https://gmlwjd9405.github.io/2019/01/28/http-header-types.html 
 
 ### 학습 메모 ###
-- 
+- 생각보다 HTTP 헤더에 담는 데이터가 많다.
+- 웹사이트를 만들면서 인증에 관련한 세션, 쿠키는 인숙하나 다른 개념은 반복 학습 필요.
+- [07 HTTP 헤더] 내용은 참고 링크 보기.
