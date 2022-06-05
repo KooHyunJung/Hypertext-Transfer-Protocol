@@ -38,7 +38,6 @@
     <h3> 02 검증 헤더와 조건부 요청1 </h3>
   </summary>
 
-
 </details>
 
 <a name="3"></a>
@@ -48,6 +47,7 @@
   <summary>
     <h3> 검증 헤더와 조건부 요청2 </h3>
   </summary>
+</details>
 
 <a name="4"></a>
 ## 04 캐시와 조건부 요청 헤더 ##
@@ -56,6 +56,7 @@
   <summary>
     <h3> 캐시와 조건부 요청 헤더 </h3>
   </summary>
+</details>
 
 <a name="5"></a>
 ## 05 프록시 캐시 ##
@@ -64,7 +65,7 @@
   <summary>
     <h3> 프록시 캐시 </h3>
   </summary>
-
+</details>
 
 <a name="6"></a>
 ## 06 캐시 무효화 ##
@@ -73,6 +74,7 @@
   <summary>
     <h3> 캐시 무효 </h3>
   </summary>
+</details>
 
 ---
 ### 관련 내용 참조 ###
