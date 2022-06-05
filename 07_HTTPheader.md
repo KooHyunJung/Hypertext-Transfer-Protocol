@@ -35,7 +35,7 @@
 
 <details>
   <summary>
-    <h3> 내용 </h3>
+    <h3> 02 검증 헤더와 조건부 요청1 </h3>
   </summary>
 
 
@@ -46,7 +46,7 @@
 
 <details>
   <summary>
-    <h3> 내용 </h3>
+    <h3> 검증 헤더와 조건부 요청2 </h3>
   </summary>
 
 <a name="4"></a>
@@ -54,7 +54,7 @@
 
 <details>
   <summary>
-    <h3> 내용 </h3>
+    <h3> 캐시와 조건부 요청 헤더 </h3>
   </summary>
 
 <a name="5"></a>
@@ -62,7 +62,7 @@
 
 <details>
   <summary>
-    <h3> 내용 </h3>
+    <h3> 프록시 캐시 </h3>
   </summary>
 
 
@@ -71,7 +71,7 @@
 
 <details>
   <summary>
-    <h3> 내용 </h3>
+    <h3> 캐시 무효 </h3>
   </summary>
 
 ---
