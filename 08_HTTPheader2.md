@@ -170,6 +170,66 @@
   <summary>
     <h3> 캐시와 조건부 요청 헤더 </h3>
   </summary>
+
+### 캐시 제어 헤더 ###
+  - Cache-Control: 캐시 제어
+  - Pragma: 캐시 제어(하위 호환)
+  - Expires: 캐시 유효 기간(하위 호환)
+
+<details>
+  <summary>
+    <h3> Cache-Control </h3>
+  </summary>
+
+> 캐시 제어 헤더 3가지가 있지만 오늘날 Cache-Control로 거이 모든 걸 한다
+
+- ```Cache-Control: max-age```
+  - 캐시 유효 시간, 초 단위로 입력할 수 있다(보통 유효시간을 길게 잡는다)
+- ```Cache-Control: no-cache```
+  - 데이터는 캐시해도 되지만, 항상 원(origin) 서버에 검증하고 사용해야 된다.
+    - [재요청] 시 "If-Modified-Since: Last-Modified" 보내는 것 처럼 항상 서버에 물어보고 사용하라는 것.
+- ```Cache-Control: no-store```
+  - 데이터에 민감한 정보가 있으므로 저장하면 안됨(메모리에서 사용하고 최대한 빨리 삭제)
+    - 보통 캐시하면 하드디스크에 저장이 된다. 하지만 응답 캐시에 "Cache-Control: no-store" 있으면 메모리에서 사용하고 최대한 빨리 삭제한다
+
+</details>
+
+<details>
+  <summary>
+    <h3> Pragma </h3>
+  </summary>
+
+> 지금은 거이 사용하지 않는다. 하지만 하위 호환으로 필요하면 사용하기도 한다.
+
+- ```Pragma: no-cache```
+  - no-cache처럼 동작한다
+- HTTP 1.0 하위 호환
+
+</details>
+
+<details>
+  <summary>
+    <h3> Expires </h3>
+  </summary>
+
+> 지금은 거이 사용하지 않는다. 하지만 하위 호환으로 필요하면 사용하기도 한다.
+
+- ```expires: Mon, 01 Jan 1990 00:00:00 GMT```
+- 캐시 만료일을 정확한 날짜로 지정할 수 있다(날짜지정 보다 초단위로 만료일 지정하는 방법이 훨씬 유용한 방법이다)
+  - 때문에 지금은 더 유연한 ```Cache-Control: max-age``` 사용 권장한다
+- HTTP 1.0 부터 사용
+- ```Cache-Control: max-age```와 함께 사용하면 Expires는 무시한다
+
+</details>
+
+### [검증 헤더]와 [조건부 요청 헤더] 정리 ###
+
+- **[검증 헤더]**
+  - ```ETag:``` "v1.0", ```ETag:``` "a2dkfhddl22"
+  - ```Last-Modified:``` Thu, 04 Jun 2020 07:20:30 GMT
+- **[조건부 헤더] 4가지**
+  - If-Match, If-None-Match: ETag 값 사용
+  - If-Modified-Since, If-Unmodified-Since: Last-Modified 값 사용
 </details>
 
 <a name="5"></a>
