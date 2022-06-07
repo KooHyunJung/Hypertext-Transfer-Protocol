@@ -166,15 +166,15 @@
 <a name="4"></a>
 ## 04 캐시와 조건부 요청 헤더 ##
 
-<details>
-  <summary>
-    <h3> 캐시와 조건부 요청 헤더 </h3>
-  </summary>
-
 ### 캐시 제어 헤더 ###
 1. Cache-Control: 캐시 제어
 2. Pragma: 캐시 제어(하위 호환)
 3. Expires: 캐시 유효 기간(하위 호환)
+
+<details>
+  <summary>
+    <h3> 캐시 제어 헤더 (3가지) 대해서 </h3>
+  </summary>
 
 <details>
   <summary>
@@ -277,6 +277,33 @@ Pragma: no-cache
 ### 캐시 지시어 - 확실한 캐시 무효화
 
 ![스크린샷 2022-06-07 오후 1 27 36](https://user-images.githubusercontent.com/96563289/172296160-9366275d-07ad-45ba-9713-08e47cd27268.png)
+
+</details>
+
+<details>
+  <summary>
+    <h3> no-cache만 사용하지... 왜 "must-revalidate"가 필요한가? </h3>
+  </summary>
+
+> "no-cache", "must-revalidate" 둘 다 서버에 검증하고 사용 한다. 단 no-cache는 항상 원 서버 검증. must-revalidate는 캐시 만료 후 최초 조회 시 원 서버 검증 한다.
+
+### no-cache 기본 동작
+
+![스크린샷 2022-06-07 오후 4 16 17](https://user-images.githubusercontent.com/96563289/172319486-02013a19-590e-421f-b65e-8b92310c4047.png)
+
+> no-cache 경우 원 서버에 보내야 하지만 순간 네트워크가 단절하면 프록시 데이터에 장애가 일어나면 옛 데이터를 보여주는 설정을 할 수 있다. 이렇게 설정을 하면 네트워크 장애 시 원 서버가 아닌 프록시에서 응답.
+
+![스크린샷 2022-06-07 오후 4 16 31](https://user-images.githubusercontent.com/96563289/172319707-6f3e4052-6579-4a14-916e-f377cbd36a50.png)
+
+> ‼️ 하지만 이렇게 하면 문제가 발생한다
+
+> 상황 예시) 계좌이체를 하고 통장 새로고침을 했는데 네트워크 장애로 원 서버가 아닌 프록시에서 응답하게 되면 옛 통장 잔고가 보이게 된다...!
+
+> 때문에 "must-revalidate"까지 작성해 주는 것이다
+
+![스크린샷 2022-06-07 오후 4 17 02](https://user-images.githubusercontent.com/96563289/172319767-b99f8905-39aa-46f3-ba02-8f49ed171544.png)
+
+> "must-revalidate"는 원 서버로 가는 네트워크 장애가 발생하면 이미지 같이 504 에러로 응답한다
 
 </details>
 
