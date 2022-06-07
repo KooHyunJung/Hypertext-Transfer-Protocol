@@ -172,9 +172,9 @@
   </summary>
 
 ### 캐시 제어 헤더 ###
-  - Cache-Control: 캐시 제어
-  - Pragma: 캐시 제어(하위 호환)
-  - Expires: 캐시 유효 기간(하위 호환)
+1. Cache-Control: 캐시 제어
+2. Pragma: 캐시 제어(하위 호환)
+3. Expires: 캐시 유효 기간(하위 호환)
 
 <details>
   <summary>
